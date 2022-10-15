@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -8,6 +9,8 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
+    
+    @* Navbar *@
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -18,15 +21,37 @@
                 </button>
                 @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
+
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+           
                 </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    @if (Session["name"] == null)
+                    {
+                        <li>@Html.ActionLink("Sign Up", "SignUp", "User")</li>
+                        <li>@Html.ActionLink("Login", "Login", "User")</li>
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("Hi! " + @Session["name"],"UserAccount")</li>
+                        <li>@Html.ActionLink("Logout", "Logout", "User")</li>
+                    }
+
+                </ul>
+
+
             </div>
+
+         
+
+         
         </div>
     </div>
+
+
     <div class="container body-content">
         @RenderBody()
         <hr />
