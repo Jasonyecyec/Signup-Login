@@ -38,15 +38,24 @@ namespace signandlogin.Models
         [Display(Name = "Address: ")]
         public string address { get; set; }
 
+       
         [Required(AllowEmptyStrings = false, ErrorMessage = "Gender is Required.")]
         [Display(Name = "Gender: ")]
         public string gender { get; set; }
 
+        [Display(Name = "Birthdate : ")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Birthday is Required.")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime birthdate { get; set; }
+        
+        [Display(Name = "Phone number: ")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "PhoneNumber is Required.")]
+        [DataType(DataType.PhoneNumber)]
+        //[RegularExpression(@"^[0-9]\{1,11}\$",ErrorMessage = "Not more than 11 digits")]
+        public string phoneNumber { get; set; }
 
         public DateTime dateCreated { get; set; }
+        
     }
 }

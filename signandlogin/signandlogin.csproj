@@ -162,6 +162,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\EmailModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -221,6 +222,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\User\SignUp.cshtml" />
     <Content Include="Views\User\LogIn.cshtml" />
+    <Content Include="Views\User\EmailValidation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
