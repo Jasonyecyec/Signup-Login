@@ -5,12 +5,14 @@ using System.Web;
 using System.Web.Mvc;
 using signandlogin.Models;
 using signandlogin.DBModel;
+using Newtonsoft.Json;
+using System.Net.Mail;
 
 namespace signandlogin.Controllers
 {
     public class UserController : Controller
     {
-        
+
 
         // GET: User
         public ActionResult SignUp()
@@ -29,6 +31,10 @@ namespace signandlogin.Controllers
                 {
                     if (!userDBEntities.users.Any(m => m.email == userObject.email))
                     {
+                        Random r = new Random();
+                        int randNum = r.Next(1000000);
+                        string userOtp = randNum.ToString("D6");
+
                         user userTable = new DBModel.user();
                         userTable.first_name = userObject.firstName;
                         userTable.last_name = userObject.lastName;
@@ -36,13 +42,16 @@ namespace signandlogin.Controllers
                         userTable.password = userObject.password;
                         userTable.address = userObject.address;
                         userTable.gender = userObject.gender;
+                        userTable.phone_number = userObject.phoneNumber;
                         userTable.birthdate = userObject.birthdate;
                         userTable.date_created = DateTime.Now;
+                        userTable.otp = userOtp;
 
-                        userDBEntities.users.Add(userTable);
-                        userDBEntities.SaveChanges();
-
-                        return RedirectToAction("Index", "Home");
+                 
+                        Session["otp"] = userOtp;
+                        TempData["email"] = userObject.email;
+                        TempData["userTable"] = JsonConvert.SerializeObject(userTable);
+                        return RedirectToAction("EmailValidation");
                     }
                     else
                     {
@@ -56,9 +65,64 @@ namespace signandlogin.Controllers
             return View();
         }
 
+        public ActionResult EmailValidation()
+        {
+      
+            using (MailMessage mail = new MailMessage())
+                {
+                  
+                    mail.To.Add(TempData["email"].ToString());
+                    mail.From = new MailAddress("jason.yecyec023@gmail.com");
+                    mail.Subject = "OTP";
+                    string Body = Session["otp"].ToString();
+                    mail.Body = Body;
+                    mail.IsBodyHtml = true;
+                    SmtpClient smtp = new SmtpClient();
+                    smtp.Host = "smtp.gmail.com";
+                    smtp.Port = 587;
+                    smtp.UseDefaultCredentials = false;
+                    smtp.Credentials = new System.Net.NetworkCredential("jason.yecyec023@gmail.com", "hjjwsqbmhhppqemk"); // Enter sender User name and password       
+                    smtp.EnableSsl = true;
+                    smtp.Send(mail);
+                }
+            
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult EmailValidation(string otp)
+        {
+          
+         
+            if (otp == Session["otp"].ToString())
+            {
+                return RedirectToAction("SaveUserToDatabase");
+            }
+            else
+            {
+                ModelState.AddModelError("Error", "Invalid OTP");
+                return View();
+            }
+
+      
+        }
+        public ActionResult SaveUserToDatabase()
+        {
+            user userTable = JsonConvert.DeserializeObject<user>(TempData["userTable"].ToString());
+            using (users_dbEntities userDBEntities = new users_dbEntities())
+            {
+                userDBEntities.users.Add(userTable);
+                userDBEntities.SaveChanges();
+            }
+
+            Session["name"] = userTable.first_name + " " + userTable.last_name;
+            return RedirectToAction("Index", "Home");
+  
+        }
+
+
         public ActionResult LogIn()
         {
-        
             return View();
         }
 

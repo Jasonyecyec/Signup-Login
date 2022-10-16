@@ -22,6 +22,8 @@ namespace signandlogin.DBModel
         public string address { get; set; }
         public string gender { get; set; }
         public System.DateTime birthdate { get; set; }
+        public string phone_number { get; set; }
         public System.DateTime date_created { get; set; }
+        public string otp { get; set; }
     }
 }
