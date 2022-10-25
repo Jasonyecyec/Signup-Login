@@ -141,23 +141,23 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
-    <Compile Include="DBModel\dbModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>dbModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DBModel\dbModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>dbModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DBModel\dbModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>dbModel.edmx</DependentUpon>
-    </Compile>
     <Compile Include="DBModel\user.cs">
-      <DependentUpon>dbModel.tt</DependentUpon>
+      <DependentUpon>userDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DBModel\userDBModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>userDBModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DBModel\userDBModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>userDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DBModel\userDBModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>userDBModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -172,28 +172,30 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="DBModel\dbModel.Context.tt">
+    <Content Include="Content\Homepage\header.css" />
+    <Content Include="DBModel\userDBModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>dbModel.edmx</DependentUpon>
-      <LastGenOutput>dbModel.Context.cs</LastGenOutput>
+      <DependentUpon>userDBModel.edmx</DependentUpon>
+      <LastGenOutput>userDBModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="DBModel\dbModel.tt">
+    <Content Include="DBModel\userDBModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>dbModel.edmx</DependentUpon>
-      <LastGenOutput>dbModel.cs</LastGenOutput>
+      <DependentUpon>userDBModel.edmx</DependentUpon>
+      <LastGenOutput>userDBModel.cs</LastGenOutput>
     </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\User_Photo\default_user_photo.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="DBModel\dbModel.edmx">
+    <EntityDeploy Include="DBModel\userDBModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>dbModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>userDBModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="DBModel\dbModel.edmx.diagram">
-      <DependentUpon>dbModel.edmx</DependentUpon>
+    <Content Include="DBModel\userDBModel.edmx.diagram">
+      <DependentUpon>userDBModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />

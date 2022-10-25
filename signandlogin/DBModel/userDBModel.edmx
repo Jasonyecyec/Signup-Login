@@ -13,13 +13,14 @@
           <Property Name="first_name" Type="varchar" MaxLength="45" Nullable="false" />
           <Property Name="last_name" Type="varchar" MaxLength="45" Nullable="false" />
           <Property Name="email" Type="varchar" MaxLength="45" Nullable="false" />
-          <Property Name="password" Type="varchar" MaxLength="45" Nullable="false" />
           <Property Name="address" Type="varchar" MaxLength="45" Nullable="false" />
           <Property Name="gender" Type="varchar" MaxLength="45" Nullable="false" />
           <Property Name="birthdate" Type="date" Nullable="false" />
           <Property Name="phone_number" Type="varchar" MaxLength="45" Nullable="false" />
           <Property Name="date_created" Type="date" Nullable="false" />
-          <Property Name="otp" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="user_photo" Type="varchar" MaxLength="125" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="password_salt" Type="varchar" MaxLength="250" Nullable="false" />
         </EntityType>
         <EntityContainer Name="users_dbModelStoreContainer">
           <EntitySet Name="users" EntityType="Self.users" Schema="users_db" store:Type="Tables" />
@@ -37,13 +38,14 @@
           <Property Name="first_name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="last_name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="email" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="password" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="address" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="gender" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="birthdate" Type="DateTime" Nullable="false" />
           <Property Name="phone_number" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="date_created" Type="DateTime" Nullable="false" />
-          <Property Name="otp" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="user_photo" Type="String" MaxLength="125" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password_salt" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
         <EntityContainer Name="users_dbEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="users" EntityType="Self.user" />
@@ -61,13 +63,14 @@
                 <ScalarProperty Name="first_name" ColumnName="first_name" />
                 <ScalarProperty Name="last_name" ColumnName="last_name" />
                 <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="address" ColumnName="address" />
                 <ScalarProperty Name="gender" ColumnName="gender" />
                 <ScalarProperty Name="birthdate" ColumnName="birthdate" />
                 <ScalarProperty Name="phone_number" ColumnName="phone_number" />
                 <ScalarProperty Name="date_created" ColumnName="date_created" />
-                <ScalarProperty Name="otp" ColumnName="otp" />
+                <ScalarProperty Name="user_photo" ColumnName="user_photo" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="password_salt" ColumnName="password_salt" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

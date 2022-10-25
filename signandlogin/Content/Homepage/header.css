@@ -1,0 +1,8 @@
+﻿.user-photo{
+    width:30px;
+    border-radius:1em;
+}
+.navbar-right{
+    display:flex;
+    align-items:center;
+}
