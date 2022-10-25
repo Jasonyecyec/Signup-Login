@@ -7,6 +7,7 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/Homepage/header.css" rel="stylesheet" />
 </head>
 <body>
     
@@ -35,8 +36,10 @@
                         <li>@Html.ActionLink("Login", "Login", "User")</li>
                     }
                     else
-                    {
-                        <li>@Html.ActionLink("Hi! " + @Session["name"],"UserAccount")</li>
+                    {                 
+                        <li>      
+                            <a href="@Url.Action("UserAccount","User")"> <img src="@Session["userPhoto"]" alt="Alternate Text" class="user-photo" /> Hi! @Session["name"]</a>
+                        </li>
                         <li>@Html.ActionLink("Logout", "Logout", "User")</li>
                     }
 

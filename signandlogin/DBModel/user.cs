@@ -18,12 +18,13 @@ namespace signandlogin.DBModel
         public string first_name { get; set; }
         public string last_name { get; set; }
         public string email { get; set; }
-        public string password { get; set; }
         public string address { get; set; }
         public string gender { get; set; }
         public System.DateTime birthdate { get; set; }
         public string phone_number { get; set; }
         public System.DateTime date_created { get; set; }
-        public string otp { get; set; }
+        public string user_photo { get; set; }
+        public string password { get; set; }
+        public string password_salt { get; set; }
     }
 }
