@@ -7,10 +7,15 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    <link href="~/Content/Homepage/header.css" rel="stylesheet" />
+
+
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="sweetalert2.min.css">
+
 </head>
 <body>
-    
+
     @* Navbar *@
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
@@ -26,7 +31,7 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-           
+
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
@@ -36,9 +41,9 @@
                         <li>@Html.ActionLink("Login", "Login", "User")</li>
                     }
                     else
-                    {                 
-                        <li>      
-                            <a href="@Url.Action("UserAccount","User")"> <img src="@Session["userPhoto"]" alt="Alternate Text" class="user-photo" /> Hi! @Session["name"]</a>
+                    {
+                        <li>
+                            <a href="@Url.Action("UserProfile","User")"> <img src="@Session["userPhoto"]" alt="Alternate Text" class="user-photo" /> Hi! @Session["name"]</a>
                         </li>
                         <li>@Html.ActionLink("Logout", "Logout", "User")</li>
                     }
@@ -48,9 +53,9 @@
 
             </div>
 
-         
 
-         
+
+
         </div>
     </div>
 
