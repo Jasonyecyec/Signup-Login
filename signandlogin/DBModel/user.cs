@@ -26,5 +26,10 @@ namespace signandlogin.DBModel
         public string user_photo { get; set; }
         public string password { get; set; }
         public string password_salt { get; set; }
+
+        internal object Entry(user userDB)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

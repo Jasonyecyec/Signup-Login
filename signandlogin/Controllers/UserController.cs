@@ -13,6 +13,7 @@ namespace signandlogin.Controllers
 {
     public class UserController : Controller
     {
+        public object Entitystate { get; private set; }
 
 
         //========== SIGN UP==================
@@ -132,6 +133,7 @@ namespace signandlogin.Controllers
             Session.Remove("otp");
             //create name session and display in Homepage
             Session["name"] = userTable.first_name + " " + userTable.last_name;
+            Session["id"] = userTable.userID;
             Session["userPhoto"] = Url.Content(userTable.user_photo.Trim());
             return RedirectToAction("Index", "Home");
   
@@ -163,6 +165,7 @@ namespace signandlogin.Controllers
                         {
                             //get name and store in session, redirect to homepage
                             Session["name"] = findUser.first_name + " " + findUser.last_name;
+                            Session["id"] = findUser.userID;
                             Session["userPhoto"] = Url.Content(findUser.user_photo.Trim());
 
                             return RedirectToAction("Index", "Home");
@@ -192,6 +195,53 @@ namespace signandlogin.Controllers
             Session.Abandon();
             return RedirectToAction("Index","Home");
         }
+
+        //============== USER PROFILE ====================
+        public ActionResult UserProfile()
+        {
+            //guard clause
+            if (Session["id"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            var userID = Session["id"].ToString();
+
+            
+            user userModel = new user();
+            using (users_dbEntities userDBEntities = new users_dbEntities())
+            {
+                userModel = userDBEntities.users.Where(x => x.userID.ToString() == userID).FirstOrDefault();
+            }
+
+            return View(userModel);
+        }
+
+        [HttpPost]
+        public ActionResult UserProfile(user userModel)
+        {
+
+            var session_userID = Convert.ToInt32(Session["id"].ToString());
+            user user = new user{userID = session_userID,first_name = userModel.first_name ,last_name = userModel.last_name, email = userModel.email,address = userModel.address};
+
+            using (users_dbEntities userDBEntities = new users_dbEntities())
+            {
+ 
+                var userDB = userDBEntities.users.Find(Convert.ToInt32(Session["id"].ToString()));
+
+                userDB.first_name = userModel.first_name;
+                userDB.last_name = userModel.last_name;
+                userDB.email = userModel.email;
+                userDB.address = userModel.address;
+                userDBEntities.SaveChanges();
+            }
+
+            Session["name"] = userModel.first_name + " " + userModel.last_name;
+            TempData["alert-message"] = "updated";
+            return View(userModel);
+        }
+
+
 
 
 
